@@ -1,0 +1,22 @@
+{
+  "extends": "../tsconfig",
+  "compilerOptions": {
+    "outDir": "build/dist",
+    "target": "es5",
+    "lib": ["es6", "dom"],
+    "jsx": "react",
+    "rootDir": "src",
+    "baseUrl": "./",
+    "noImplicitAny": false,
+    "experimentalDecorators": true
+  },
+  "exclude": [
+    "node_modules",
+    "build",
+    "scripts",
+    "acceptance-tests",
+    "webpack",
+    "jest",
+    "src/setupTests.ts"
+  ]
+}

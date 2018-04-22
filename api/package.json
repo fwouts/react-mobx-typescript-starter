@@ -1,0 +1,14 @@
+{
+  "name": "api",
+  "author": "Francois Wouts <f@zenc.io>",
+  "license": "MIT",
+  "scripts": {
+    "generate": "yarn generate-client && yarn generate-server",
+    "generate-client": "apidef generate typescript rest.api ../client/src -c http://localhost:3010",
+    "generate-server": "apidef generate typescript rest.api ../server/src -s"
+  },
+  "devDependencies": {
+    "@zenclabs/api": "^0.0.21",
+    "uuid": "^3.2.1"
+  }
+}
