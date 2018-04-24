@@ -1,24 +1,13 @@
-// Endpoint to register users.
-endpoint registerUser: POST /users/register RegisterUserRequest
--> success 200 string
--> unauthorized 403 string
+// Endpoint to say hello.
+endpoint sayHello: POST /say/hello SayHelloRequest
+-> success 200 SayHelloResponse
 -> failure 409 string
 
-type RegisterUserRequest = {
-  email: string
-  password: string
+type SayHelloRequest = {
+  name: string
 }
 
-// Endpoint to login users.
-endpoint loginUser: POST /users/login LoginUserRequest
--> success 200 LoginUserResponse
--> failure 401 string
-
-type LoginUserRequest = {
-  email: string
-  password: string
-}
-
-type LoginUserResponse = {
-  authToken: string
+type SayHelloResponse = {
+  english: string
+  spanish: string
 }

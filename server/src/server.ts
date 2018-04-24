@@ -7,8 +7,7 @@ import * as types from "./api/types";
 import * as validators from "./api/validators";
 
 // start-generated-section endpointImports
-import { loginUser } from "./endpoints/loginUser";
-import { registerUser } from "./endpoints/registerUser";
+import { sayHello } from "./endpoints/sayHello";
 // end-generated-section endpointImports
 
 const PORT = 3010;
@@ -26,30 +25,21 @@ app.use(
 );
 
 // start-generated-section httpHooks
-app.post("/users/register", async (req, res, next) => {
+app.post("/say/hello", async (req, res, next) => {
   try {
-    const request: types.RegisterUserRequest = req.body;
-    if (!validators.validate_RegisterUserRequest(request)) {
+    const request: types.SayHelloRequest = req.body;
+    if (!validators.validate_SayHelloRequest(request)) {
       throw new Error(`Invalid request: ${JSON.stringify(request, null, 2)}`);
     }
-    const response: types.RegisterUser_Response = await registerUser(request);
+    const response: types.SayHello_Response = await sayHello(request);
     switch (response.kind) {
       case "success":
-        if (!validators.validate_string(response.data)) {
+        if (!validators.validate_SayHelloResponse(response.data)) {
           throw new Error(
             `Invalid response: ${JSON.stringify(response, null, 2)}`,
           );
         }
         res.status(200);
-        res.json(response.data);
-        break;
-      case "unauthorized":
-        if (!validators.validate_string(response.data)) {
-          throw new Error(
-            `Invalid response: ${JSON.stringify(response, null, 2)}`,
-          );
-        }
-        res.status(403);
         res.json(response.data);
         break;
       case "failure":
@@ -59,42 +49,6 @@ app.post("/users/register", async (req, res, next) => {
           );
         }
         res.status(409);
-        res.json(response.data);
-        break;
-      default:
-        throw new Error(
-          `Invalid response: ${JSON.stringify(response, null, 2)}`,
-        );
-    }
-  } catch (err) {
-    next(err);
-  }
-});
-
-app.post("/users/login", async (req, res, next) => {
-  try {
-    const request: types.LoginUserRequest = req.body;
-    if (!validators.validate_LoginUserRequest(request)) {
-      throw new Error(`Invalid request: ${JSON.stringify(request, null, 2)}`);
-    }
-    const response: types.LoginUser_Response = await loginUser(request);
-    switch (response.kind) {
-      case "success":
-        if (!validators.validate_LoginUserResponse(response.data)) {
-          throw new Error(
-            `Invalid response: ${JSON.stringify(response, null, 2)}`,
-          );
-        }
-        res.status(200);
-        res.json(response.data);
-        break;
-      case "failure":
-        if (!validators.validate_string(response.data)) {
-          throw new Error(
-            `Invalid response: ${JSON.stringify(response, null, 2)}`,
-          );
-        }
-        res.status(401);
         res.json(response.data);
         break;
       default:
