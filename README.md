@@ -27,3 +27,5 @@ After updating the API, you can update the client and server code:
 cd api
 yarn generate
 ```
+
+For a more thorough example, check out the [rentals example project](https://github.com/fwouts/rentals).
