@@ -2,8 +2,12 @@
 
 set -e
 
-concurrently \
-  "cd client ; yarn precommit" \
-  "cd server ; yarn precommit"
+cd client
+yarn precommit
+cd -
+
+cd server
+yarn precommit
+cd -
 
 echo "Ready to commit!"

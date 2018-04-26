@@ -21,6 +21,8 @@
   },
   "devDependencies": {
     "@types/jest": "^22.2.3",
+    "concurrently": "^3.5.1",
+    "lint-staged": "^7.0.5",
     "react-scripts-ts": "^2.15.1",
     "typescript": "^2.8.3"
   },
