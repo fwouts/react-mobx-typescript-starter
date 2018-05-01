@@ -1,3 +1,9 @@
+// This file declares the API that server and client will communicate through.
+//
+// Think Swagger, but easier to read and write manually.
+//
+// See https://www.npmjs.com/package/@zenclabs/api for details.
+
 // Endpoint to say hello.
 endpoint sayHello: POST /say/hello SayHelloRequest
 -> success 200 SayHelloResponse
